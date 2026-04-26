@@ -35,7 +35,6 @@ body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
-  padding-bottom: 64px;
 }
 /* ── NAV ── */
 nav {
@@ -197,38 +196,6 @@ footer .logo em { color:var(--gold-warm); }
 footer p { font-size:11px; color:rgba(255,255,255,.35); letter-spacing:.04em; }
 footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
 
-/* ── BARRA INFERIOR ── */
-.bottom-bar {
-  position:fixed; bottom:0; left:0; right:0; z-index:400;
-  height:64px; background:rgba(12,27,48,.97);
-  backdrop-filter:blur(16px);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 40px; border-top:1px solid rgba(168,133,42,.2);
-}
-.bb-brand { display:flex; align-items:center; gap:16px; }
-.bb-logo { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:400; letter-spacing:.1em; color:var(--white); }
-.bb-logo em { font-style:normal; color:var(--gold-warm); }
-.bb-sep { width:1px; height:20px; background:rgba(255,255,255,.12); }
-.bb-status { display:flex; align-items:center; gap:7px; }
-.bb-dot { width:6px; height:6px; border-radius:50%; background:#4CAF50; animation:pulse 2.4s infinite; }
-.bb-dot.away { background:#FFA726; animation:pulse 2.4s infinite; }
-.bb-status-text { font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,.45); }
-.bb-center { position:absolute; left:50%; transform:translateX(-50%); font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:rgba(255,255,255,.3); letter-spacing:.02em; pointer-events:none; }
-.bb-action { position:relative; }
-.bb-trigger { display:flex; align-items:center; gap:10px; padding:10px 22px; border:1px solid rgba(168,133,42,.4); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-warm); background:transparent; cursor:pointer; transition:border-color .25s, background .25s; font-family:'DM Sans',sans-serif; }
-.bb-trigger:hover { border-color:var(--gold-warm); background:rgba(168,133,42,.08); }
-.bb-trigger-dot { width:5px; height:5px; border-radius:50%; background:var(--gold-warm); flex-shrink:0; }
-
-.bb-menu { position:absolute; bottom:calc(100% + 12px); right:0; width:300px; background:var(--cream); border:1px solid var(--line); box-shadow:0 -24px 64px rgba(12,27,48,.12); display:none; overflow:hidden; }
-.bb-menu.open { display:block; }
-.bb-menu-header { padding:18px 22px 14px; border-bottom:1px solid var(--line); }
-.bb-menu-title { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:400; color:var(--navy); }
-.bb-menu-sub { font-size:11px; color:var(--ink-light); margin-top:2px; }
-.bb-options { padding:12px 0; }
-.bb-option { display:block; width:100%; padding:13px 22px; background:none; border:none; text-align:left; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--ink-mid); cursor:pointer; transition:background .2s, color .2s; border-left:2px solid transparent; }
-.bb-option:hover { background:var(--cream-mid); color:var(--navy); border-left-color:var(--gold); }
-.bb-menu-footer { padding:10px 22px 14px; border-top:1px solid var(--line); font-size:10px; letter-spacing:.04em; color:var(--ink-light); text-align:center; }
-
 /* ── REVEAL ── */
 .r { opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease; }
 .r.on { opacity:1; transform:translateY(0); }
@@ -236,8 +203,6 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
 /* ── ANIMACIONES ── */
 @keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
-
 /* ── RESPONSIVE ── */
 @media (max-width:900px) {
   nav { padding:16px 24px; }
@@ -257,9 +222,6 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
   .prof-visual { height:300px; }
   .proceso-inner { padding:0 24px; }
   footer { flex-direction:column; gap:14px; text-align:center; padding:32px 24px; }
-  .bottom-bar { padding:0 20px; }
-  .bb-center { display:none; }
-  .bb-menu { width:280px; right:-10px; }
   .cta-wrap { padding:100px 24px; }
 }
 </style>
@@ -273,7 +235,7 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
     <a href="#proceso">Cómo funciona</a>
     <a href="#servicios">Servicios</a>
     <a href="#profesionales">¿Eres profesional?</a>
-    <a href="#contacto" class="nav-btn">Cuéntanos tu caso</a>
+    <a href="https://wa.me/34684718424" class="nav-btn" target="_blank" rel="noopener">Cuéntanos tu caso</a>
   </div>
 </nav>
 
@@ -285,7 +247,7 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
     <div>
       <div class="hero-eyebrow">España · Salud premium</div>
       <h1>No es buscar.<br><i>Es elegir bien.</i></h1>
-      <p class="hero-body">Evaluamos tu caso y te conectamos con el especialista correcto. Sin que tengas que buscar.</p>
+      <p class="hero-body">Cuéntanos tu caso. Nosotros elegimos por ti.</p>
       <p style="margin-top:14px;font-size:13px;color:var(--ink-light);font-style:italic;line-height:1.7;">Porque hay personas que saben que una buena decisión en salud vale más que cualquier cobertura.</p>
       <div class="pills">
         <span class="pill"><span class="pill-dot"></span>Sesiones 1 a 1</span>
@@ -457,7 +419,7 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
   <h2 class="cta-h2 r">¿Necesitas orientación<br>en <i>salud?</i></h2>
   <p class="cta-sub r">Cuéntanos tu caso. Te orientamos de forma gratuita y te conectamos con el profesional de salud correcto para lo que necesitas.</p>
   <div class="cta-btns r">
-    <a href="https://wa.me/34684718424?text=Hola%2C%20me%20gustar%C3%ADa%20orientaci%C3%B3n%20sobre%20un%20profesional%20de%20salud" class="btn-line" target="_blank">WhatsApp directo →</a>
+    <a href="https://wa.me/34684718424" class="btn-line" target="_blank" rel="noopener">WhatsApp directo →</a>
   </div>
 </div>
 
@@ -470,90 +432,9 @@ footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
   <a href="mailto:info@aiduxcare.com">info@aiduxcare.com</a>
 </footer>
 
-<!-- BARRA INFERIOR -->
 </main>
-<div class="bottom-bar" id="bottomBar">
-  <div class="bb-brand">
-    <div class="bb-logo">Dux<em>Care</em></div>
-    <div class="bb-sep"></div>
-    <div class="bb-status">
-      <span class="bb-dot" id="bbDot"></span>
-      <span class="bb-status-text" id="bbStatusText">—</span>
-    </div>
-  </div>
-  <div class="bb-center" id="bbCenter">Cuéntanos tu caso</div>
-  <div class="bb-action">
-    <button class="bb-trigger" id="bbTrigger" onclick="toggleMenu()">
-      <span class="bb-trigger-dot"></span>
-      <span id="bbTriggerLabel">Cuéntanos tu caso</span>
-    </button>
-    <div class="bb-menu" id="bbMenu">
-      <div class="bb-menu-header">
-        <div class="bb-menu-title">¿Qué te ocurre?</div>
-        <div class="bb-menu-sub" id="bbMenuSub">Un clínico te orientará personalmente</div>
-      </div>
-      <div class="bb-options">
-        <button class="bb-option" onclick="sendQ('Tengo dolor en la espalda o columna y no sé a quién ir')">— Dolor de espalda o columna</button>
-        <button class="bb-option" onclick="sendQ('Tengo una lesión deportiva y busco al especialista adecuado')">— Lesión deportiva</button>
-        <button class="bb-option" onclick="sendQ('Necesito un especialista bilingüe')">— Necesito atención en inglés o francés</button>
-        <button class="bb-option" onclick="sendQ('Tengo otro problema de salud y necesito orientación')">— Otro problema — quiero orientación</button>
-      </div>
-      <div class="bb-menu-footer" id="bbMenuFooter">Lun–Vie 9:00–20:00 · Orientación gratuita siempre</div>
-    </div>
-  </div>
-</div>
 
 <script>
-function checkHorario() {
-  const now = new Date();
-  const h = now.getHours(), d = now.getDay();
-  const active = d >= 1 && d <= 5 && h >= 9 && h < 20;
-  const dot = document.getElementById('bbDot');
-  const text = document.getElementById('bbStatusText');
-  const center = document.getElementById('bbCenter');
-  const sub = document.getElementById('bbMenuSub');
-  const footer = document.getElementById('bbMenuFooter');
-  if (active) {
-    dot.className = 'bb-dot';
-    text.textContent = 'Disponible ahora';
-    center.textContent = 'Cuéntanos tu caso';
-    sub.textContent = 'Un clínico te orientará personalmente';
-    footer.textContent = 'Lun–Vie 9:00–20:00 · Orientación gratuita siempre';
-  } else {
-    dot.className = 'bb-dot away';
-    text.textContent = 'Respondemos Lun–Vie 9–20 h';
-    center.textContent = 'Déjanos tu caso';
-    sub.textContent = 'Un clínico te responderá en horario laboral';
-    footer.textContent = 'Fuera de horario · Respuesta garantizada al día siguiente';
-  }
-}
-checkHorario();
-
-let menuOpen = false;
-function toggleMenu() {
-  menuOpen = !menuOpen;
-  document.getElementById('bbMenu').classList.toggle('open', menuOpen);
-}
-function openMenu() {
-  menuOpen = true;
-  document.getElementById('bbMenu').classList.add('open');
-}
-document.addEventListener('click', e => {
-  const menu = document.getElementById('bbMenu');
-  const trigger = document.getElementById('bbTrigger');
-  if (menuOpen && !menu.contains(e.target) && !trigger.contains(e.target)) {
-    menuOpen = false;
-    menu.classList.remove('open');
-  }
-});
-
-function sendQ(text) {
-  const msg = encodeURIComponent('Hola, me gustaría orientación. Mi caso: ' + text);
-  window.open('https://wa.me/34684718424?text=' + msg, '_blank');
-  menuOpen = false;
-  document.getElementById('bbMenu').classList.remove('open');
-}
-
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 80);
