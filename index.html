@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DuxCare — No es buscar. Es elegir bien.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:      #F9F5EF;
+  --cream-mid:  #EDE8DF;
+  --cream-dark: #E4DDD1;
+  --navy:       #0C1B30;
+  --navy-soft:  #1A2E48;
+  --gold:       #A8852A;
+  --gold-warm:  #C4A04A;
+  --gold-dim:   rgba(168,133,42,0.10);
+  --ink:        #1C1C1C;
+  --ink-mid:    #5A5550;
+  --ink-light:  #9A948C;
+  --line:       rgba(28,28,28,0.09);
+  --white:      #FFFFFF;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 64px;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; width:100%; z-index:500;
+  padding:22px 64px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(249,245,239,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.logo { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; letter-spacing:.12em; color:var(--navy); }
+.logo em { font-style:normal; color:var(--gold); }
+.nav-links { display:flex; gap:36px; align-items:center; }
+.nav-links a { font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-mid); text-decoration:none; transition:color .25s; }
+.nav-links a:hover { color:var(--gold); }
+.nav-btn { padding:9px 22px; border:1px solid var(--navy); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); text-decoration:none; transition:background .25s, color .25s; }
+.nav-btn:hover { background:var(--navy); color:var(--white); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; padding:130px 64px 80px;
+  display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;
+  max-width:1280px; margin:0 auto;
+}
+.hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:28px; opacity:0; animation:rise .7s .15s ease forwards; }
+.hero-eyebrow::before { content:''; width:20px; height:1px; background:var(--gold); flex-shrink:0; }
+.hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(50px,5.5vw,82px); font-weight:300; line-height:1.07; letter-spacing:-.015em; color:var(--navy); opacity:0; animation:rise .7s .3s ease forwards; }
+.hero h1 i { font-style:italic; color:var(--gold); }
+.hero-body { margin-top:22px; max-width:400px; font-size:15px; line-height:1.8; color:var(--ink-mid); opacity:0; animation:rise .7s .45s ease forwards; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; opacity:0; animation:rise .7s .6s ease forwards; }
+.pill { display:inline-flex; align-items:center; gap:7px; padding:7px 15px; border:1px solid var(--line); background:var(--white); font-size:11px; letter-spacing:.04em; color:var(--ink-mid); }
+.pill-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:40px; opacity:0; animation:rise .7s .75s ease forwards; }
+.btn-dark { display:inline-block; padding:14px 30px; background:var(--navy); color:var(--white); font-size:11px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border:1px solid var(--navy); transition:background .25s; }
+.btn-dark:hover { background:var(--navy-soft); }
+.btn-line { display:inline-block; padding:14px 30px; background:transparent; color:var(--ink-mid); font-size:11px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:border-color .25s, color .25s; }
+.btn-line:hover { border-color:var(--gold); color:var(--gold); }
+
+/* ── HERO VISUAL ── */
+.hero-visual { position:relative; height:560px; opacity:0; animation:fadeIn .9s .5s ease forwards; }
+.hero-photo { width:100%; height:100%; object-fit:cover; display:block; }
+.hero-chip { position:absolute; bottom:36px; left:-32px; background:var(--white); padding:18px 22px; border-left:2px solid var(--gold); box-shadow:0 16px 48px rgba(12,27,48,.08); min-width:220px; }
+.hero-chip-label { font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
+.hero-chip-value { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--navy); line-height:1.2; }
+.hero-chip-sub { font-size:11px; color:var(--ink-light); margin-top:3px; }
+.hero-flag { position:absolute; top:32px; right:-16px; background:var(--navy); padding:14px 18px; box-shadow:0 12px 40px rgba(12,27,48,.2); }
+.hero-flag p { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:3px; }
+.hero-flag strong { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; color:var(--gold-warm); }
+
+/* ── STATS BAND ── */
+.stats-band { background:var(--navy); padding:44px 64px; display:flex; justify-content:center; gap:80px; flex-wrap:wrap; }
+.stat { text-align:center; }
+.stat-n { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--gold-warm); line-height:1; }
+.stat-l { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:6px; }
+
+/* ── SEPARADORES ── */
+.sep { width:100%; height:1px; background:var(--line); }
+
+/* ── SECCIONES COMUNES ── */
+.section { padding:120px 64px; max-width:1280px; margin:0 auto; }
+.eyebrow { font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.section-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,3.2vw,48px); font-weight:300; line-height:1.18; color:var(--navy); }
+.section-h2 i { font-style:italic; color:var(--gold); }
+
+/* ── DIFERENCIADOR ── */
+.dif-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.dif-photo-wrap { position:relative; height:520px; }
+.dif-photo { width:100%; height:100%; object-fit:cover; }
+.dif-badge { position:absolute; bottom:0; right:0; background:var(--gold); padding:22px 26px; color:var(--navy); }
+.dif-badge-n { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; line-height:1; }
+.dif-badge-l { font-size:9px; letter-spacing:.18em; text-transform:uppercase; margin-top:4px; }
+.dif-list { display:flex; flex-direction:column; gap:28px; margin-top:36px; }
+.dif-item { display:flex; gap:18px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+.dif-item:last-child { border-bottom:none; padding-bottom:0; }
+.dif-n { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:rgba(168,133,42,.25); line-height:1; min-width:32px; }
+.dif-item h3 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--navy); margin-bottom:6px; }
+.dif-item p { font-size:13px; color:var(--ink-mid); line-height:1.75; }
+
+/* ── PROCESO ── */
+.proceso-wrap { background:var(--cream-mid); padding:120px 0; }
+.proceso-inner { max-width:1280px; margin:0 auto; padding:0 64px; }
+.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+.step { background:var(--white); padding:44px 32px; position:relative; overflow:hidden; transition:background .35s; }
+.step::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--gold); transition:width .4s ease; }
+.step:hover { background:var(--navy); }
+.step:hover::after { width:100%; }
+.step:hover .step-num { color:rgba(255,255,255,.05); }
+.step:hover .step-icon { color:var(--gold-warm); }
+.step:hover h3 { color:var(--white); }
+.step:hover p { color:rgba(255,255,255,.55); }
+.step-num { position:absolute; top:14px; right:18px; font-family:'Cormorant Garamond',serif; font-size:60px; font-weight:300; color:rgba(28,28,28,.05); line-height:1; transition:color .35s; }
+.step-icon { font-size:20px; margin-bottom:20px; display:block; transition:color .35s; }
+.step h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--navy); margin-bottom:10px; transition:color .35s; }
+.step p { font-size:13px; color:var(--ink-mid); line-height:1.75; transition:color .35s; }
+
+/* ── SERVICIOS ── */
+.servicios-wrap { padding:120px 0; }
+.servicios-inner { max-width:1280px; margin:0 auto; padding:0 64px; }
+.servicios-intro { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-bottom:64px; }
+.servicios-text p { font-size:15px; color:var(--ink-mid); line-height:1.8; margin-top:20px; max-width:440px; }
+
+.servicios-gratis {
+  background:var(--navy); padding:32px 36px;
+  display:flex; align-items:center; gap:24px;
+}
+.servicios-gratis-icon { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; color:var(--gold-warm); line-height:1; flex-shrink:0; }
+.servicios-gratis-text h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--white); margin-bottom:6px; }
+.servicios-gratis-text p { font-size:13px; color:rgba(255,255,255,.55); line-height:1.7; }
+.servicios-gratis-tag { display:inline-block; margin-top:10px; padding:4px 12px; background:var(--gold); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--navy); font-weight:500; }
+
+.servicios-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.servicio-card { background:var(--white); padding:32px 28px; border-top:2px solid transparent; transition:border-color .3s, background .3s; position:relative; overflow:hidden; }
+.servicio-card:hover { border-color:var(--gold); background:var(--cream); }
+.servicio-card h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--navy); margin-bottom:8px; }
+.servicio-card p { font-size:12px; color:var(--ink-light); line-height:1.7; }
+.servicio-tag { display:inline-block; margin-top:14px; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+
+/* ── ESPECIALIDADES ── */
+.esp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+.esp-card { position:relative; overflow:hidden; background:var(--white); }
+.esp-img { width:100%; height:190px; object-fit:cover; display:block; transition:transform .5s ease, filter .4s; filter:grayscale(15%); }
+.esp-card:hover .esp-img { transform:scale(1.04); filter:grayscale(0%); }
+.esp-body { padding:22px 24px 26px; border-top:2px solid transparent; transition:border-color .3s; }
+.esp-card:hover .esp-body { border-color:var(--gold); }
+.esp-body h3 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--navy); margin-bottom:5px; }
+.esp-body p { font-size:12px; color:var(--ink-light); line-height:1.65; }
+.esp-tag { display:inline-block; margin-top:10px; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+
+/* ── PROFESIONALES ── */
+.prof-wrap { background:var(--navy); padding:120px 0; }
+.prof-inner { max-width:1280px; margin:0 auto; padding:0 64px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.prof-eyebrow { font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.prof-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,44px); font-weight:300; line-height:1.2; color:var(--white); margin-bottom:20px; }
+.prof-h2 i { font-style:italic; color:var(--gold-warm); }
+.prof-body { font-size:14px; color:rgba(255,255,255,.55); line-height:1.85; margin-bottom:32px; }
+.prof-items { display:flex; flex-direction:column; gap:14px; margin-bottom:36px; }
+.prof-item { display:flex; align-items:center; gap:12px; font-size:13px; color:rgba(255,255,255,.65); }
+.prof-item::before { content:'—'; color:var(--gold); font-size:12px; flex-shrink:0; }
+.btn-gold { display:inline-block; padding:14px 30px; background:var(--gold); color:var(--navy); font-size:11px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border:1px solid var(--gold); font-weight:500; transition:background .25s; }
+.btn-gold:hover { background:var(--gold-warm); }
+.prof-visual { position:relative; height:480px; }
+.prof-photo { width:100%; height:100%; object-fit:cover; filter:brightness(.75); }
+.prof-quote { position:absolute; bottom:28px; left:28px; right:28px; background:rgba(249,245,239,.94); padding:22px 24px; border-left:2px solid var(--gold); }
+.prof-quote blockquote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--navy); line-height:1.55; }
+.prof-quote cite { display:block; margin-top:8px; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); font-style:normal; }
+
+/* ── CTA FINAL ── */
+.cta-wrap { padding:160px 64px; text-align:center; position:relative; overflow:hidden; }
+.cta-wrap::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 60%, rgba(168,133,42,.05) 0%, transparent 68%); }
+.cta-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(44px,6vw,72px); font-weight:300; line-height:1.08; color:var(--navy); margin-bottom:16px; position:relative; }
+.cta-h2 i { font-style:italic; color:var(--gold); }
+.cta-sub { font-size:15px; color:var(--ink-mid); margin-bottom:48px; position:relative; }
+.cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; }
+
+/* ── FOOTER ── */
+footer { background:var(--navy); padding:42px 64px; display:flex; justify-content:space-between; align-items:center; }
+footer .logo { color:var(--white); }
+footer .logo em { color:var(--gold-warm); }
+footer p { font-size:11px; color:rgba(255,255,255,.35); letter-spacing:.04em; }
+footer a { font-size:11px; color:var(--gold-warm); text-decoration:none; }
+
+/* ── BARRA INFERIOR ── */
+.bottom-bar {
+  position:fixed; bottom:0; left:0; right:0; z-index:400;
+  height:64px; background:rgba(12,27,48,.97);
+  backdrop-filter:blur(16px);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px; border-top:1px solid rgba(168,133,42,.2);
+}
+.bb-brand { display:flex; align-items:center; gap:16px; }
+.bb-logo { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:400; letter-spacing:.1em; color:var(--white); }
+.bb-logo em { font-style:normal; color:var(--gold-warm); }
+.bb-sep { width:1px; height:20px; background:rgba(255,255,255,.12); }
+.bb-status { display:flex; align-items:center; gap:7px; }
+.bb-dot { width:6px; height:6px; border-radius:50%; background:#4CAF50; animation:pulse 2.4s infinite; }
+.bb-dot.away { background:#FFA726; animation:pulse 2.4s infinite; }
+.bb-status-text { font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,.45); }
+.bb-center { position:absolute; left:50%; transform:translateX(-50%); font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:rgba(255,255,255,.3); letter-spacing:.02em; pointer-events:none; }
+.bb-action { position:relative; }
+.bb-trigger { display:flex; align-items:center; gap:10px; padding:10px 22px; border:1px solid rgba(168,133,42,.4); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-warm); background:transparent; cursor:pointer; transition:border-color .25s, background .25s; font-family:'DM Sans',sans-serif; }
+.bb-trigger:hover { border-color:var(--gold-warm); background:rgba(168,133,42,.08); }
+.bb-trigger-dot { width:5px; height:5px; border-radius:50%; background:var(--gold-warm); flex-shrink:0; }
+
+.bb-menu { position:absolute; bottom:calc(100% + 12px); right:0; width:300px; background:var(--cream); border:1px solid var(--line); box-shadow:0 -24px 64px rgba(12,27,48,.12); display:none; overflow:hidden; }
+.bb-menu.open { display:block; }
+.bb-menu-header { padding:18px 22px 14px; border-bottom:1px solid var(--line); }
+.bb-menu-title { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:400; color:var(--navy); }
+.bb-menu-sub { font-size:11px; color:var(--ink-light); margin-top:2px; }
+.bb-options { padding:12px 0; }
+.bb-option { display:block; width:100%; padding:13px 22px; background:none; border:none; text-align:left; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--ink-mid); cursor:pointer; transition:background .2s, color .2s; border-left:2px solid transparent; }
+.bb-option:hover { background:var(--cream-mid); color:var(--navy); border-left-color:var(--gold); }
+.bb-menu-footer { padding:10px 22px 14px; border-top:1px solid var(--line); font-size:10px; letter-spacing:.04em; color:var(--ink-light); text-align:center; }
+
+/* ── REVEAL ── */
+.r { opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease; }
+.r.on { opacity:1; transform:translateY(0); }
+
+/* ── ANIMACIONES ── */
+@keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; padding:110px 24px 60px; gap:40px; }
+  .hero-visual { height:340px; }
+  .hero-chip { left:0; bottom:-20px; }
+  .stats-band { padding:32px 24px; gap:32px; }
+  .section { padding:80px 24px; }
+  .dif-grid { grid-template-columns:1fr; }
+  .steps { grid-template-columns:1fr; }
+  .servicios-intro { grid-template-columns:1fr; gap:32px; }
+  .servicios-grid { grid-template-columns:1fr 1fr; }
+  .servicios-inner { padding:0 24px; }
+  .esp-grid { grid-template-columns:1fr 1fr; }
+  .prof-inner { grid-template-columns:1fr; padding:0 24px; }
+  .prof-visual { height:300px; }
+  .proceso-inner { padding:0 24px; }
+  footer { flex-direction:column; gap:14px; text-align:center; padding:32px 24px; }
+  .bottom-bar { padding:0 20px; }
+  .bb-center { display:none; }
+  .bb-menu { width:280px; right:-10px; }
+  .cta-wrap { padding:100px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Dux<em>Care</em></div>
+  <div class="nav-links">
+    <a href="#proceso">Cómo funciona</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#especialidades">Especialidades</a>
+    <a href="#profesionales">¿Eres profesional?</a>
+    <a href="#contacto" class="nav-btn">Cuéntanos tu caso</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1280px;margin:0 auto;">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">Valencia · España · Salud premium</div>
+      <h1>No es buscar.<br><i>Es elegir bien.</i></h1>
+      <p class="hero-body">Somos profesionales de la salud que te conectamos con el especialista correcto para lo que necesitas. Sesiones 1 a 1, atención de calidad. La orientación, siempre gratuita. Respuesta garantizada en menos de 24 horas.</p>
+      <p style="margin-top:14px;font-size:13px;color:var(--ink-light);font-style:italic;line-height:1.7;">Porque hay personas que saben que una buena decisión en salud vale más que cualquier cobertura.</p>
+      <div class="pills">
+        <span class="pill"><span class="pill-dot"></span>Sesiones 1 a 1</span>
+        <span class="pill"><span class="pill-dot"></span>Orientación gratuita</span>
+        <span class="pill"><span class="pill-dot"></span>Especialistas evaluados</span>
+        <span class="pill"><span class="pill-dot"></span>Respuesta en menos de 24h</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#" onclick="openMenu();return false;" class="btn-dark">Cuéntanos tu caso</a>
+        <a href="#servicios" class="btn-line">Ver servicios →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-photo" src="assets/dr-bata-blanca.webp" alt="Médico en bata blanca sonriente con laptop" onerror="this.style.background='var(--cream-dark)'">
+      <div class="hero-chip">
+        <div class="hero-chip-label">Nuestra promesa</div>
+        <div class="hero-chip-value">El especialista<br>correcto para ti</div>
+        <div class="hero-chip-sub">Criterio clínico real · No algoritmos</div>
+      </div>
+      <div class="hero-flag">
+        <p>Atención</p>
+        <strong>100% individual</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat r"><div class="stat-n">20</div><div class="stat-l">Años de experiencia clínica</div></div>
+  <div class="stat r"><div class="stat-n">1·1</div><div class="stat-l">Sesiones siempre individuales</div></div>
+  <div class="stat r"><div class="stat-n">0 €</div><div class="stat-l">Coste de la orientación</div></div>
+  <div class="stat r"><div class="stat-n">&lt;24h</div><div class="stat-l">2 alternativas garantizadas</div></div>
+</div>
+
+<!-- DIFERENCIADOR -->
+<section class="section">
+  <div class="dif-grid">
+    <div class="dif-photo-wrap r">
+      <img class="dif-photo" src="assets/fisio-dry-needling.jpg" alt="Fisioterapeuta aplicando dry needling" onerror="this.style.background='var(--cream-dark)'">
+      <div class="dif-badge"><div class="dif-badge-n">100%</div><div class="dif-badge-l">Criterio clínico</div></div>
+    </div>
+    <div class="r">
+      <div class="eyebrow">Por qué DuxCare</div>
+      <h2 class="section-h2">No somos un directorio.<br>Somos profesionales de la salud recomendando<br>a sus mejores colegas — <i>con conocimiento de causa.</i></h2>
+      <div class="dif-list">
+        <div class="dif-item">
+          <div class="dif-n">01</div>
+          <div><h3>Respuesta garantizada en menos de 24 horas</h3><p>Si tenemos al especialista disponible de inmediato, te lo conectamos en el momento. Si no, consultamos con nuestra red de partners y en menos de 24 horas recibes al menos dos alternativas validadas — una recomendación principal y una segunda opción, por si te acomoda más.</p></div>
+        </div>
+        <div class="dif-item">
+          <div class="dif-n">02</div>
+          <div><h3>Acceso a agenda que el público no tiene</h3><p>Nuestros especialistas partner reservan slots exclusivos para pacientes DuxCare. No están en Doctoralia. No están en Google. Solo accesibles a través de nosotros.</p></div>
+        </div>
+        <div class="dif-item">
+          <div class="dif-n">03</div>
+          <div><h3>Profesionales recomendando con conocimiento de causa</h3><p>Cada especialista ha sido evaluado personalmente. Y después de tu primera consulta, seguimos aquí — porque entender cómo evolucionas es parte de lo que hacemos.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- PROCESO -->
+<div class="proceso-wrap" id="proceso">
+  <div class="proceso-inner">
+    <div class="r">
+      <div class="eyebrow">El proceso</div>
+      <h2 class="section-h2">Tres pasos hacia la atención<br>que <i>mereces</i></h2>
+    </div>
+    <div class="steps">
+      <div class="step r"><span class="step-num">01</span><span class="step-icon">◌</span><h3>Cuéntanos qué te pasa</h3><p>Sin formularios. Solo cuéntanos tu caso — dónde duele, cuánto tiempo llevas, qué has probado. Desde aquí mismo.</p></div>
+      <div class="step r"><span class="step-num">02</span><span class="step-icon">◈</span><h3>Tu mejor opción — garantizada</h3><p>Si tenemos al especialista correcto disponible, te lo presentamos de inmediato. Si no, consultamos con nuestra red de partners y en menos de 24 horas tienes al menos dos alternativas validadas — para que elijas con criterio, no con suerte.</p></div>
+      <div class="step r"><span class="step-num">03</span><span class="step-icon">✦</span><h3>Acceso exclusivo al especialista correcto</h3><p>Nuestros partners reservan slots para pacientes DuxCare. Tu sesión es 1 a 1, con un profesional evaluado, en una agenda que no está disponible para el público general.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<div class="servicios-wrap" id="servicios">
+  <div class="servicios-inner">
+    <div class="servicios-intro">
+      <div class="r">
+        <div class="eyebrow">Servicios</div>
+        <h2 class="section-h2">Lo que hacemos<br>por ti — y su <i>coste real</i></h2>
+        <p class="servicios-text">La orientación clínica siempre es gratuita. Si necesitas algo más — gestionar tu cita, encontrar un especialista bilingüe, traducir tus informes o coordinar tu traslado — estamos aquí para hacerlo. Cuéntanos tu caso y te explicamos cómo podemos ayudarte.</p>
+        <p class="servicios-text" style="margin-top:12px;font-size:12px;color:var(--ink-light);letter-spacing:.04em;font-style:italic;">Comenzamos con fisioterapia — la especialidad que conocemos desde adentro.</p>
+      </div>
+      <div class="r">
+        <div class="servicios-gratis">
+          <div class="servicios-gratis-icon">∞</div>
+          <div class="servicios-gratis-text">
+            <h3>Orientación en salud</h3>
+            <p>Escuchamos tu caso y te conectamos con el profesional de salud correcto para lo que necesitas. Siempre personalizado. Siempre gratuito.</p>
+            <span class="servicios-gratis-tag">Siempre gratuito</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="servicios-grid">
+      <div class="servicio-card r">
+        <h3>Agendamiento</h3>
+        <p>DuxCare tiene horas prioritarias reservadas para sus clientes. Te conseguimos cita con el profesional correcto de forma ágil y sin que tengas que gestionar nada.</p>
+        <span class="servicio-tag">Acceso prioritario</span>
+      </div>
+      <div class="servicio-card r">
+        <h3>Profesional en tu idioma</h3>
+        <p>Identificamos un profesional de salud que atiende en tu idioma — inglés, francés u otro. Para una comunicación tranquila y fluida en tu consulta.</p>
+        <span class="servicio-tag">Inglés · Francés · Otros</span>
+      </div>
+      <div class="servicio-card r">
+        <h3>Documentación clínica</h3>
+        <p>Te explicamos tus informes en términos más simples. Podemos organizarlos, traducirlos y generar un documento formal para que llegues preparado a tu consulta y aproveches mejor cada minuto con el profesional. Nunca interpretamos — facilitamos la comunicación.</p>
+        <span class="servicio-tag">Resumen · Derivación · Claridad</span>
+      </div>
+      <div class="servicio-card r">
+        <h3>Acompañamiento profesional</h3>
+        <p>Un profesional de salud te acompaña a tu consulta o terapia para ayudarte a entender mejor la información recibida y que puedas tomar decisiones con mayor seguridad y claridad.</p>
+        <span class="servicio-tag">Presencial · Para tu tranquilidad</span>
+      </div>
+      <div class="servicio-card r">
+        <h3>Recogida y transporte</h3>
+        <p>Coordinamos tu traslado al centro — ida, vuelta, o ambos. Especialmente útil para personas mayores o con movilidad reducida.</p>
+        <span class="servicio-tag">Según necesidad</span>
+      </div>
+      <div class="servicio-card r" style="background:var(--navy);border-top:2px solid var(--gold);">
+        <h3 style="color:var(--white);">Mediación con el profesional</h3>
+        <p style="color:rgba(255,255,255,.6);">Si algo no fue como esperabas — una duda sin resolver, un servicio no prestado, una situación incómoda — estamos aquí para mediar y ayudarte a resolverlo.</p>
+        <span class="servicio-tag">Tu voz, nuestra gestión</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ESPECIALIDADES ELIMINADAS -->
+
+<!-- PROFESIONALES -->
+<div class="prof-wrap" id="profesionales">
+  <div class="prof-inner">
+    <div class="r">
+      <div class="prof-eyebrow">Para profesionales de la salud</div>
+      <h2 class="prof-h2">¿Quieres ser parte<br>de nuestra <i>red?</i></h2>
+      <p class="prof-body">Creemos en las alianzas entre iguales. Si compartes nuestra forma de entender la atención en salud — con tiempo real para cada paciente, criterio profesional y compromiso genuino con su experiencia — nos gustaría conocerte. Te invitamos a que nos juntemos en tus instalaciones, conversemos y veamos juntos si tiene sentido construir algo en común.</p>
+      <div class="prof-items">
+        <div class="prof-item">Especialidad clara con formación verificable</div>
+        <div class="prof-item">Instalaciones adecuadas para atención de calidad</div>
+        <div class="prof-item">Disponibilidad para sesiones individuales sin alta rotación</div>
+        <div class="prof-item">Compromiso genuino con la experiencia del paciente</div>
+      </div>
+      <a href="mailto:info@aiduxcare.com?subject=Quiero%20ser%20partner%20de%20DuxCare" class="btn-gold">Escríbenos a info@aiduxcare.com →</a>
+    </div>
+    <div class="prof-visual r">
+      <img class="prof-photo" src="assets/doctor-camisa-azul.jpg" alt="Doctor con camisa azul atendiendo a una paciente en consulta" onerror="this.style.background='var(--navy-soft)'">
+      <div class="prof-quote">
+        <blockquote>"Profesionales de la salud recomendando a sus mejores colegas — con conocimiento de causa."</blockquote>
+        <cite>Mauricio Sobarzo · Fundador · Fisioterapeuta</cite>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-wrap" id="contacto">
+  <div class="eyebrow r">Empieza hoy</div>
+  <h2 class="cta-h2 r">¿Necesitas orientación<br>en <i>salud?</i></h2>
+  <p class="cta-sub r">Cuéntanos tu caso. Te orientamos de forma gratuita y te conectamos con el profesional de salud correcto para lo que necesitas.</p>
+  <div class="cta-btns r">
+    <a href="#" onclick="openMenu();return false;" class="btn-dark">Cuéntanos tu caso</a>
+    <a href="https://wa.me/34684718424?text=Hola%2C%20me%20gustar%C3%ADa%20orientaci%C3%B3n%20sobre%20un%20profesional%20de%20salud" class="btn-line" target="_blank">WhatsApp directo →</a>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Dux<em>Care</em></div>
+  <p>Valencia, España · @duxcare.health · www.aiduxcare.com</p>
+  <a href="mailto:info@aiduxcare.com">info@aiduxcare.com</a>
+</footer>
+
+<!-- BARRA INFERIOR -->
+<div class="bottom-bar" id="bottomBar">
+  <div class="bb-brand">
+    <div class="bb-logo">Dux<em>Care</em></div>
+    <div class="bb-sep"></div>
+    <div class="bb-status">
+      <span class="bb-dot" id="bbDot"></span>
+      <span class="bb-status-text" id="bbStatusText">—</span>
+    </div>
+  </div>
+  <div class="bb-center" id="bbCenter">Cuéntanos tu caso</div>
+  <div class="bb-action">
+    <button class="bb-trigger" id="bbTrigger" onclick="toggleMenu()">
+      <span class="bb-trigger-dot"></span>
+      <span id="bbTriggerLabel">Cuéntanos tu caso</span>
+    </button>
+    <div class="bb-menu" id="bbMenu">
+      <div class="bb-menu-header">
+        <div class="bb-menu-title">¿Qué te ocurre?</div>
+        <div class="bb-menu-sub" id="bbMenuSub">Un clínico te orientará personalmente</div>
+      </div>
+      <div class="bb-options">
+        <button class="bb-option" onclick="sendQ('Tengo dolor en la espalda o columna y no sé a quién ir')">— Dolor de espalda o columna</button>
+        <button class="bb-option" onclick="sendQ('Tengo una lesión deportiva y busco al especialista adecuado')">— Lesión deportiva</button>
+        <button class="bb-option" onclick="sendQ('Necesito un especialista bilingüe en Valencia')">— Necesito atención en inglés o francés</button>
+        <button class="bb-option" onclick="sendQ('Tengo otro problema de salud y necesito orientación')">— Otro problema — quiero orientación</button>
+      </div>
+      <div class="bb-menu-footer" id="bbMenuFooter">Lun–Vie 9:00–20:00 · Orientación gratuita siempre</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function checkHorario() {
+  const now = new Date();
+  const h = now.getHours(), d = now.getDay();
+  const active = d >= 1 && d <= 5 && h >= 9 && h < 20;
+  const dot = document.getElementById('bbDot');
+  const text = document.getElementById('bbStatusText');
+  const center = document.getElementById('bbCenter');
+  const sub = document.getElementById('bbMenuSub');
+  const footer = document.getElementById('bbMenuFooter');
+  if (active) {
+    dot.className = 'bb-dot';
+    text.textContent = 'Disponible ahora';
+    center.textContent = 'Cuéntanos tu caso';
+    sub.textContent = 'Un clínico te orientará personalmente';
+    footer.textContent = 'Lun–Vie 9:00–20:00 · Orientación gratuita siempre';
+  } else {
+    dot.className = 'bb-dot away';
+    text.textContent = 'Respondemos Lun–Vie 9–20 h';
+    center.textContent = 'Déjanos tu caso';
+    sub.textContent = 'Un clínico te responderá en horario laboral';
+    footer.textContent = 'Fuera de horario · Respuesta garantizada al día siguiente';
+  }
+}
+checkHorario();
+
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  document.getElementById('bbMenu').classList.toggle('open', menuOpen);
+}
+function openMenu() {
+  menuOpen = true;
+  document.getElementById('bbMenu').classList.add('open');
+}
+document.addEventListener('click', e => {
+  const menu = document.getElementById('bbMenu');
+  const trigger = document.getElementById('bbTrigger');
+  if (menuOpen && !menu.contains(e.target) && !trigger.contains(e.target)) {
+    menuOpen = false;
+    menu.classList.remove('open');
+  }
+});
+
+function sendQ(text) {
+  const msg = encodeURIComponent('Hola, me gustaría orientación. Mi caso: ' + text);
+  window.open('https://wa.me/34684718424?text=' + msg, '_blank');
+  menuOpen = false;
+  document.getElementById('bbMenu').classList.remove('open');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 80);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    e.preventDefault();
+    const t = document.querySelector(id);
+    if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+</script>
+</body>
+</html>
