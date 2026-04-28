@@ -50,6 +50,7 @@ nav {
 .logo em { font-style:normal; color:var(--gold); }
 nav .logo { display:flex; align-items:center; flex-shrink:0; }
 nav .logo-mark { display:block; height:58px; width:auto; }
+.nav-right { display:flex; gap:14px; align-items:center; }
 .nav-links { display:flex; gap:36px; align-items:center; }
 .nav-links a { font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-mid); text-decoration:none; transition:color .25s; }
 .nav-links a:hover { color:var(--gold); }
@@ -237,6 +238,9 @@ footer a { font-size:14px; color:var(--gold-warm); text-decoration:none; }
   nav { padding:16px 24px; }
   nav .logo-mark { height:48px; }
   .nav-links { display:none; }
+  .nav-right { display:flex; align-items:center; gap:8px; position:absolute; right:24px; top:50%; transform:translateY(-50%); z-index:1; }
+  .nav-btn { display:none; }
+  .nav-right a { white-space:nowrap; }
   .hero { grid-template-columns:1fr; padding:110px 24px 60px; gap:40px; }
   .hero-visual { height:340px; }
   .hero-chip { left:0; bottom:-20px; }
@@ -266,8 +270,10 @@ footer a { font-size:14px; color:var(--gold-warm); text-decoration:none; }
     <a href="#proceso">How it works</a>
     <a href="#servicios">Services</a>
     <a href="#profesionales">Are you a professional?</a>
+  </div>
+  <div class="nav-right">
     <a href="/" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;padding:9px 14px;border:1px solid var(--line);transition:color .25s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-mid)'">ES</a>
-    <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20help%20finding%20a%20specialist%20in%20Spain.%20My%20situation%20is%3A%0ALocation%3A%0AAvailability%3A" class="nav-btn" target="_blank" rel="noopener">Tell us your case</a>
+    <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20some%20guidance.%20Here%27s%20my%20situation%3A%20%28feel%20free%20to%20send%20a%20voice%20note%29" class="nav-btn" target="_blank" rel="noopener">Tell us your case</a>
   </div>
 </nav>
 
@@ -287,7 +293,7 @@ footer a { font-size:14px; color:var(--gold-warm); text-decoration:none; }
       </div>
       <p style="font-style:italic; font-size:13px; color:var(--ink-light); margin-top:14px; line-height:1.7;">Response in under 24 hours — through a trusted clinical network, not algorithms.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20help%20finding%20a%20specialist%20in%20Spain.%20My%20situation%20is%3A%0ALocation%3A%0AAvailability%3A" class="btn-dark" target="_blank" rel="noopener">TALK TO US ON WHATSAPP →</a>
+        <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20some%20guidance.%20Here%27s%20my%20situation%3A%20%28feel%20free%20to%20send%20a%20voice%20note%29" class="btn-dark" target="_blank" rel="noopener">TALK TO US ON WHATSAPP →</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -449,7 +455,7 @@ footer a { font-size:14px; color:var(--gold-warm); text-decoration:none; }
   <h2 class="cta-h2 r">Need guidance<br>on <i>healthcare in Spain?</i></h2>
   <p class="cta-sub r">Message us on WhatsApp and we'll recommend the right specialist near you.</p>
   <div class="cta-btns r">
-    <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20help%20finding%20a%20specialist%20in%20Spain.%20My%20situation%20is%3A%0ALocation%3A%0AAvailability%3A" class="btn-line" target="_blank" rel="noopener">TALK TO US ON WHATSAPP →</a>
+    <a href="https://wa.me/34684718424?text=Hi%2C%20I%20need%20some%20guidance.%20Here%27s%20my%20situation%3A%20%28feel%20free%20to%20send%20a%20voice%20note%29" class="btn-line" target="_blank" rel="noopener">TALK TO US ON WHATSAPP →</a>
   </div>
 </div>
 
