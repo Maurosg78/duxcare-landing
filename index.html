@@ -469,7 +469,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const t = document.querySelector(id);
     if (t) {
       const navH = document.querySelector('nav').offsetHeight;
-      const top = t.getBoundingClientRect().top + window.scrollY - navH - 16;
+      const top = t.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
